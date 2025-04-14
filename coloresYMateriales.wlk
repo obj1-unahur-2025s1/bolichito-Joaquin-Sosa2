@@ -13,6 +13,10 @@ object pardo{
     method esFuerte() = false
 }
 
+object naranja{
+    method esFuerte() = true
+}
+
 //Materiales de los objetos
 object cobre{
     method esBrillante() = true
