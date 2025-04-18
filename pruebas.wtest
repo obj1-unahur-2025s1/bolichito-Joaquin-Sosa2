@@ -1,0 +1,87 @@
+import bolichito.*
+import coloresYMateriales.*
+import objetos.*
+import personas.*
+
+// Testeos de los gustos
+describe "le gustan" {
+  test "es cierto que le gustan a rosa" {
+    assert.that(rosa.leGusta(pelota))
+    assert.that(rosa.leGusta(remera))
+    assert.that(rosa.leGusta(munieco))
+  }
+  
+  test "es cierto que le gustan a estefania" {
+    assert.that(estefania.leGusta(placa))
+    assert.that(estefania.leGusta(biblioteca))
+  }
+  test "es cierto que le gustan a luisa" {
+    assert.that(luisa.leGusta(placa))
+    assert.that(luisa.leGusta(munieco))
+  }
+
+  test "es cierto que le gustan a juan" {
+    assert.that(juan.leGusta(pelota))
+    assert.that(juan.leGusta(munieco))
+    placa.setPeso(1500)
+    assert.that(juan.leGusta(placa))
+  }
+}
+
+// Testeos de lo que no le gustan a las personas
+describe "No le gustan" {
+  test "es cierto que no legustan a rosa" {
+    placa.setPeso(3500)    
+    assert.notThat(rosa.leGusta(biblioteca))
+    assert.notThat(rosa.leGusta(placa))
+  }
+  
+  test "es cierto que no le gustan a estefania" {
+    assert.notThat(estefania.leGusta(pelota))
+    assert.notThat(estefania.leGusta(munieco))
+  }
+  test "es cierto que no no le gustan a luisa" {
+    assert.notThat(luisa.leGusta(remera))
+    assert.notThat(luisa.leGusta(pelota))
+  }
+
+  test "es cierto que no le gustan a juan" {
+    assert.notThat(juan.leGusta(biblioteca))
+    assert.notThat(juan.leGusta(remera))
+  }
+}
+
+// Testeo del Bolichito y sus funciones
+describe "bolichito tests" {
+
+  test "es brillante y no es brillante" {
+    bolichito.setMostrador(munieco)
+    bolichito.setVidriera(munieco)
+    assert.that(bolichito.esBrillante())
+    bolichito.setVidriera(biblioteca)
+    assert.notThat(bolichito.esBrillante())
+  }
+  test "es cierto que monocromatico" {
+    bolichito.setMostrador(munieco)
+    bolichito.setVidriera(munieco)
+    assert.that(bolichito.esMonocromatico())
+  }
+  test "es verdad que esta equilibrado" {
+    bolichito.setVidriera(munieco)
+    assert.that(bolichito.estaDesequilibrado())
+  }
+  test "hay de color rojo" {
+    bolichito.setMostrador(remera)
+    assert.that(bolichito.hayDeColor_(rojo))
+  }
+  test "puede mejorar" {
+    assert.that(bolichito.puedeMejorar())
+  }
+  test "les puedo ofrecer algo" {
+    bolichito.setMostrador(remera)
+    bolichito.setVidriera(pelota)
+    assert.that(bolichito.leGustaAlgoA_(juan))
+    assert.that(bolichito.leGustaAlgoA_(estefania))
+    assert.notThat(bolichito.leGustaAlgoA_(luisa))
+  }
+}
